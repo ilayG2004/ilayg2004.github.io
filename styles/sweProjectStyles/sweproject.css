@@ -1,0 +1,68 @@
+.sweprojects-window .Outer-window {
+  width: 486px;
+  height: 302px;
+  
+  position: absolute;
+  z-index: 11;             /* higher than your background, lower/higher as needed */
+  top: 200px;               /* tweak these to place it where you like */
+  left: 700px;
+  transform: scale(1);
+}
+
+.sweprojects-window .Inner-window {
+  width: 470px;
+  height: 262px;
+  position: relative;
+}
+
+.sweprojects-window .media {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 25px;
+  font-size: medium;
+}
+
+.sweprojects-window p {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.sweprojects-window .tech-used h5, .sweprojects-window .tech-used-bigger h5 {
+  margin-bottom: 2px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+.sweprojects-window .tech-used p {
+  font-size: 8px;
+  margin-left: 5px;
+  margin-top: 0;  
+  margin-bottom: 20px;
+  line-height: 5px;
+}
+
+
+.sweprojects-window .page-selectors img {
+  width: 41px;
+  height: 36px;
+}
+
+.sweprojects-window .selector-ui p {
+  margin:0;
+  margin-right: 35px;
+}
+
+.sweprojects-window .selector-ui {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.sweprojects-window .spark-photos {
+  margin-left: 5px;
+  font-size: large;
+}

@@ -1,0 +1,70 @@
+.swetech-window .Inner-window {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.swetech-window .content {
+  margin-top: 25px;
+  width: 160px;
+  margin-right: 10px;
+}
+
+.swetech-window .Outer-window {
+  width: 302px;
+  height: 242px;
+
+  position: absolute;
+  z-index: 9;             /* higher than your background, lower/higher as needed */
+  top: 270px;               /* tweak these to place it where you like */
+  left: 900px;
+  transform: scale(1.2);
+}
+
+.swetech-window .Inner-window {
+  width: 286px;
+  height: 200px;
+}
+
+.swetech-window .projects-link {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+
+.swetech-window .images img{
+  width: 28px;
+  height: 28px;
+  margin-top: 7px;
+  margin-bottom: 5px;
+}
+.swetech-window .images {
+  margin-left: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.swetech-window .image-col-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.swetech-window .image-col-2 {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.swetech-window .htmlcss {
+  display: block;
+  width: 33px;
+  height: 33px;
+  position: relative;     /* so z-index works if you need it */
+}
+
+.swetech-window .htmlcss + .htmlcss {     /* targets the CSS icon only */
+  margin-top: -19px;       /* pull it up */
+  margin-left: -10px;      /* pull it left */
+  z-index: 1;              /* behind the first one */
+  width: 27px;
+  height: 27px;
+}

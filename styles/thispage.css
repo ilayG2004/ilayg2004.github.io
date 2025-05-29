@@ -1,0 +1,23 @@
+.credits-window 
+.Inner-window {
+  width: 265px;
+  height: 84px;
+}
+
+.credits-window 
+> .Outer-window {
+  width: 281px;
+  height: 124px;
+
+  position: absolute;
+  z-index: 13;             /* higher than your background, lower/higher as needed */
+  top: 200px;               /* tweak these to place it where you like */
+  left: 180px;
+  transform: scale(1);
+}
+
+.credits-window 
+.content {
+  margin-left: 5px;
+  margin-right: 5px
+}

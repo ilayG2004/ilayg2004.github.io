@@ -1,0 +1,32 @@
+.contacts-window .Inner-window {
+  width: 171px;
+  height: 47px;
+  justify-content: center;
+}
+
+.contacts-window > .Outer-window {
+  width: 187px;
+  height: 85px;
+
+  position: absolute;
+  z-index: 10;             /* higher than your background, lower/higher as needed */
+  top: 400px;               /* tweak these to place it where you like */
+  left: 200px;
+  transform: scale(1.2);
+}
+
+.icons img {
+  margin-top: 9px;
+  width: 33px;
+  height: 33px;
+  margin-right: 11px;
+}
+
+.icons .final-img {
+  margin-right: 0;
+}
+
+.icons {
+  margin-left: 13px;
+  margin-right: 13px
+}

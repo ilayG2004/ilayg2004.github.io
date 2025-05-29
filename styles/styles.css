@@ -1,0 +1,58 @@
+@font-face {
+  font-family: pixelText;
+  src: url(../fonts/ms-sans-serif-1.ttf);
+}
+* {
+  font-family: pixelText;
+}
+
+body {
+  overflow: hidden;
+  background-color: #048D8F;
+}
+
+#windows-frame {
+  position: relative;
+  overflow: hidden; /* Clips any windows that spill outside main. */
+  width: 100vw;
+  height: 100vh;
+  background-color: #048D8F;
+}
+
+.toolbar {
+  background-color: #C3C7CB;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 35px;
+  display: flex;
+  align-items: center;        /* center content vertically */
+  padding: 0 10px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.toolbar button {
+  /* let the button size to its contents */
+  display: inline-flex;       /* lay out children in a row */
+  align-items: center;        /* vertically center icon & text */
+  justify-content: center;
+  
+  height: 25px;               /* or 100% to match the toolbar */
+  padding: 0 8px;             /* space around text/icon */
+  background: white;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.toolbar button img {
+  /* icon will be the same height as the button, minus a bit of padding */
+  height: 32px;                /* or a fixed px like 16px */
+  width: auto;
+  object-fit: contain;
+  margin-right: 4px;          /* space between icon and text */
+}

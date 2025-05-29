@@ -1,0 +1,127 @@
+.aiprojects-window p {
+  font-size: 9.5px;
+}
+
+.aiprojects-window 
+.p-slightly-bigger {
+  font-size: 11px;
+}
+
+.aiprojects-window 
+.p-bigger {
+  font-size: 12px;
+}
+
+.aiprojects-window 
+.Outer-window {
+  width: 486px;
+  height: 302px;
+
+  position: absolute;
+  z-index: 11;             /* higher than your background, lower/higher as needed */
+  top: 10px;               /* tweak these to place it where you like */
+  left: 510px;
+  transform: scale(0.95);
+}
+
+.aiprojects-window 
+.Inner-window {
+  width: 470px;
+  height: 262px;
+  position: relative;
+}
+
+.aiprojects-window .tetris-sc {
+  width: 147px;
+  height: 146px;
+  margin-bottom: 20px;
+}
+.aiprojects-window .trainer-img, 
+.aiprojects-window .astar-img {
+  margin-top: 10px;
+  width: 64px;
+  height: 52px;
+  border: 2px solid black;
+}
+
+.aiprojects-window 
+.trainer-img {
+  width: 128px;
+  height: 104px;
+  margin-bottom: 20px;
+}
+
+.aiprojects-window 
+.media {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 25px;
+  font-size: medium;
+}
+
+.aiprojects-window p {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.aiprojects-window .tech-used h5, 
+.aiprojects-window .tech-used-bigger h5 {
+  margin-bottom: 2px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+.aiprojects-window 
+.tech-used p {
+  font-size: 10px;
+  margin-left: 5px;
+  margin-top: 0;  
+  margin-bottom: 0;
+  line-height: 6px;
+}
+
+.aiprojects-window 
+.tech-used-bigger p {
+  font-size: 10px;
+  margin-left: 5px;
+  margin-top: 0;  
+  margin-bottom: 0;
+  line-height: 5px;
+}
+
+
+.aiprojects-window .media object.pdf {
+  width: 100%;        /* fill the container’s width */
+  height: 600px;      /* or whatever height makes sense */
+  border: 1px solid #ccc;
+}
+
+.aiprojects-window 
+iframe {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
+.aiprojects-window 
+.page-selectors img {
+  width: 41px;
+  height: 36px;
+}
+
+.aiprojects-window 
+.selector-ui p {
+  margin:0;
+  margin-right: 35px;
+}
+
+.aiprojects-window 
+.selector-ui {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}

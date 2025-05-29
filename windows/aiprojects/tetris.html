@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Window Frame</title>
+    <link rel="stylesheet" href="/styles/window.css">
+    <link rel="stylesheet" href="/styles/aiProjectStyles/aiproject.css">
+  </head>
+  <body>
+    <div id="Sample-window" class="Outer-window">
+      <div class="Top-bar">
+        <img class="Window-icon" src="/assets/shortcuts/aiprojectsicon.png" alt="AI/ML Projects Joystick Icon" style="width: 15px; height: 15px;">
+        <p class="Window-title">AI/ML Projects 3/5 - Tetris Reinforcement Learning</p>
+        <button><strong>_</strong></button>
+        <button>&#9633;</button>
+        <button class="Close">X</button>
+      </div>
+      <div class="Inner-window">
+        <div class="media">
+          <img src="/assets/aiprojects/tetrisgif.gif" class="tetris-sc">
+          <a href="https://github.com/ilayG2004/artificial-intelligence-projects" target="_blank" rel="noopener noreferrer">GitHub Link</a>
+        </div>
+        <div class="content">
+          <p>
+            Myself and a partner were tasked with designing an AI agent that could learn to play Tetris and score an avg of 20 points across 500 games.
+            <br/><br/>
+Our model selected certain features from the game state as qfunction inputs, and a simple 1-hidden layer NN with a ReLu activation function was used. 
+            <br/><br/>
+We would granularize each game state by breaking it down into only a handful of important features so we could save space and allow the agent to make exploration decisions when it is in a novel state.
+            <br/><br/>
+A “life-is-pain” approach was used for the reward function to encourage the agent to make decisions that would result in “snug” tetramino placement, minimal blank spaces in filled rows, and an overall flat board.
+          </p>
+          <div class="tech-used">
+            <h5>Tech Used:</h5>
+            <p>-Tetris Engine designed by Professor Andrew Wood at BU <br/> <br/>
+              -QFunction design with feature engineering for agent's understanding of game state <br/> <br/>
+              -Granularization of game states for Exploration Function <br/> <br/>
+              -Neural Network (1 hidden layer with ReLu activation function)  <br/> <br/>
+              -Reward function curated for punishments & rewards <br/> <br/>
+              -BU SCC qsub scripting for batch training of model
+            </p>
+          </div>
+          <div class="selector-ui">
+            <div class="page-selectors">
+              <img class="page-selector" src="/assets/aiprojects/leftarrow.PNG" data-url="/windows/aiprojects/trainer.html">
+              <img class="page-selector" src="/assets/aiprojects/rightarrow.PNG" data-url="/windows/aiprojects/kaggle.html">
+            </div>
+            <p>3/5</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  
+</html>

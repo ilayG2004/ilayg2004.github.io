@@ -1,0 +1,79 @@
+.welcome-window
+.Outer-window {
+  width: 486px;
+  height: 302px;
+  position: absolute;
+  z-index: 9;             /* higher than your background, lower/higher as needed */
+  top: 150px;               /* tweak these to place it where you like */
+  left: 550px;
+  transform: scale(1.2);
+}
+
+.welcome-window
+.media {
+  display: flex;
+  flex-direction: column;
+  max-width: 160px;
+  margin-left: 10px;
+  margin-top: 25px;
+  margin-right: 25px;
+  align-items: center;
+}
+
+.welcome-window
+.media img {
+  width: 175px;
+  height: auto;
+}
+
+.welcome-window
+.Inner-window {
+  width: 470px;
+  height: 262px;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.welcome-window
+img {
+  width: 12px;
+  height: auto;
+}
+
+.welcome-window
+.disclaimer{
+  font-size: 8px;
+  color: #444444;
+}
+
+.welcome-window
+.content p{
+  font-size: x-small;
+}
+
+.welcome-window
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.title h3 {
+  margin-right: 7px;
+}
+
+.welcome-window
+mark {
+  color: #2421D7;
+  background-color: transparent;
+}
+
+.welcome-window
+.tools {
+  color: #CD0808;
+}
+
+.welcome-window
+.shorts {
+  color: #2C9B3F;
+}
