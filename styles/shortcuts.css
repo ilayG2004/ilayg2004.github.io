@@ -3,13 +3,13 @@
 }
 .shortcut {
   /* stack icon + text vertically & center them */
-  margin-top: 0.2rem;
+  margin-top: 4px; /*0.2rem;*/
   display: flex;
   flex-direction: column;
   align-items: center;
 
   /* space between rows */
-  margin-bottom: 1rem;
+  margin-bottom: 16px; /*1rem;*/
 }
 .shortcuts {
   display: flex;
@@ -17,20 +17,25 @@
 }
 
 .shortcuts-col-1, .shortcuts-col-2 {
-  width: 12vw;
-  height: 100vh;
+  width: 154px; /*12vw;*/
+  height: 540px; /*100vh;*/
   display: flex;
   flex-direction: column;
-  transform: scale(0.88);
-  transform-origin: top left;
   margin-bottom: 27px;
   align-items: center;
+  justify-content: space-around;
+  
+
+}
+
+.shortcuts-col-2 {
+  justify-content: start;
 }
 
 .icon-frame {
   /* choose whatever size makes sense for you */
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
 
   display: flex;
   justify-content: center;
@@ -40,14 +45,14 @@
 }
 
 .icon-frame img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100%;/*100%;*/
+  max-height: auto; /*100%;*/
   object-fit: contain;
 }
 
 .icon-frame button {
   background-color: transparent;
   border-color: transparent;
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
 }

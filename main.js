@@ -1,8 +1,34 @@
-const mainwindow = document.getElementById('windows-frame');
+/* GUI Resizing for different screens */
+const DESIGN_WIDTH = 1280;
+const DESIGN_HEIGHT = 595;
+
+function updateScaleFactor() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  const fitByWidth = vw / DESIGN_WIDTH;
+  const fitByHeight = vh / DESIGN_HEIGHT;
+
+  let scale = Math.min(fitByWidth, fitByHeight, 3);
+
+  // Clamp so it never gets bigger than 3x (no zoom-in on ginormous screens):
+  scale = Math.min(3, scale);
+
+  // Write to root CSS variable
+  document.documentElement.style.setProperty('--scale', scale);
+}
+
+// Run once on load or whenever screen is resized
+updateScaleFactor();
+window.addEventListener('resize', updateScaleFactor);
+
+
+
 /* LOAD WELCOME */
+const mainwindow = document.getElementById('windows-frame');
 
 window.addEventListener("DOMContentLoaded", () => { 
-  fetch('/windows/welcome.html') 
+  fetch('windows/welcome.html') 
     .then(res => {
       if (!res.ok) throw new Error('Network error:' + res.status);
       return res.text();
@@ -32,10 +58,10 @@ mainwindow.addEventListener('click', e => {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-const click1 = new Audio("/assets/sounds/mouseClick1.mp3");
-const click2 = new Audio("/assets/sounds/mouseClick2.mp3");
-const dblClick1 = new Audio("/assets/sounds/mouseDoubleClick1.mp3");
-const dblClick2 = new Audio("/assets/sounds/mouseDoubleClick2.mp3");
+const click1 = new Audio("assets/sounds/mouseClick1.mp3");
+const click2 = new Audio("assets/sounds/mouseClick2.mp3");
+const dblClick1 = new Audio("assets/sounds/mouseDoubleClick1.mp3");
+const dblClick2 = new Audio("assets/sounds/mouseDoubleClick2.mp3");
 const delay = 200; // Differentiates between clicks and double clicks
 
 mainwindow.addEventListener('click', e => {
@@ -113,7 +139,7 @@ aboutme.addEventListener('dblclick', () => {
 contacts.addEventListener('dblclick', () => {
   const contactsExists = document.querySelector('.contacts-window');
   if (!contactsExists) {
-    fetch('/windows/contacts.html') 
+    fetch('windows/contacts.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -150,7 +176,7 @@ aiprojects.addEventListener('dblclick', () => {
 credits.addEventListener('dblclick', () => {
   const creditsExists = document.querySelector('.credits-window');
   if (!creditsExists) {
-    fetch('/windows/thispage.html') 
+    fetch('windows/thispage.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -171,7 +197,7 @@ credits.addEventListener('dblclick', () => {
 workexp.addEventListener('dblclick', () => {
   const workexpExists = document.querySelector('.workexp-window');
   if (!workexpExists) {
-    fetch('/windows/workexp/syngin.html') 
+    fetch('windows/workexp/syngin.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -188,11 +214,12 @@ workexp.addEventListener('dblclick', () => {
       .catch(err => console.error('Failed to load x.html:', err));
   }
 });
-/* Display start windows*/
+
+/* DISPLAY START WINDOWS */
 function displayAboutMe() {
   const aboutmeExists = document.querySelector('.aboutme-window');
   if (!aboutmeExists) {
-    fetch('/windows/aboutme.html') 
+    fetch('windows/aboutme.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -210,7 +237,7 @@ function displayAboutMe() {
 function displayAIInfo() {
   const aiInfoExists = document.querySelector('.aiinfo-window');
   if (!aiInfoExists) {
-    fetch('/windows/aiinfo.html') 
+    fetch('windows/aiinfo.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -237,7 +264,7 @@ function displayAIInfo() {
 function displaySWETech() {
   const swetechExists = document.querySelector('.swetech-window');
   if (!swetechExists) {
-    fetch('/windows/swetech.html') 
+    fetch('windows/swetech.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -262,7 +289,7 @@ function displaySWETech() {
 }
 
 
-/* Display Projects */
+/* DISPLAY PROJECTS */
 function displayAIProjects() {
   const aiProjectsExists = document.querySelector('.aiprojects-window');
   if (!aiProjectsExists) {
@@ -270,7 +297,7 @@ function displayAIProjects() {
     if (aiInfoExists) {
       aiInfoExists.remove();
     }
-    fetch('/windows/aiprojects/astar.html') 
+    fetch('windows/aiprojects/astar.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -295,7 +322,7 @@ function displaySWEProjects() {
     if (swetechExists) {
       swetechExists.remove();
     }
-    fetch('/windows/sweprojects/bytes.html') 
+    fetch('windows/sweprojects/bytes.html') 
       .then(res => {
         if (!res.ok) throw new Error('Network error:' + res.status);
         return res.text();
@@ -313,7 +340,7 @@ function displaySWEProjects() {
   }
 }
 
-/* Scroll button functionality */
+/* SCROLL BUTTON FUNCTIONALITY */
 document.getElementById('windows-frame').addEventListener('click', async e => {
   // if the user clicked *inside* an element with class="page-selector":
   const btn = e.target.closest('.page-selector');
