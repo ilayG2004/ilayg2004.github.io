@@ -1,27 +1,32 @@
-.aboutme-window .avatar {
+.aboutme-window 
+.avatar {
   margin-top: 25px;
   margin-left: 5px;
   width: 75px;
   height: 75px;
 }
-.aboutme-window .hobby-picture {
+.aboutme-window 
+.hobby-picture {
   width: 24px;
   height: 24px;
 }
 
-.aboutme-window .hobby-pictures {
+.aboutme-window 
+.hobby-pictures {
   display: flex;
   width: 85px;
   height: 20px;
   margin-top: 12px;
   margin-left: 5px;
 }
-.aboutme-window #pictures {
+.aboutme-window 
+#pictures {
   display: flex;
   flex-direction: column;
 }
 
-.aboutme-window .content {
+.aboutme-window 
+.content {
   margin-top: 25px;
   font-size: x-small;
 }

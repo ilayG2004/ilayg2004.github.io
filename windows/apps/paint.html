@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Window Frame</title>
+    <link rel="stylesheet" href="/styles/window.css">
+    <link rel="stylesheet" href="/styles/appStyles/paint.css">
+
+  </head>
+  <body>
+    <div id="Sample-window" class="Outer-window">
+      <div class="Top-bar">
+        <img class="Window-icon" src="assets/shortcuts/paint.png" alt="Doodle Window Icon" style="width: 15px; height: 15px;">
+        <p class="Window-title">Doodle</p>
+        <button><strong>_</strong></button>
+        <button>&#9633;</button>
+        <button class="Close">X</button>
+      </div>
+      <div class="Inner-window">
+        <div class="main-content">
+          <div id="canvas"></div>
+          <div class="color-picker">
+            <div class="black"></div>
+            <div class="red"></div>
+            <div class="yellow"></div>
+            <div class="blue"></div>
+            <div class="green"></div>
+            <div class="orange"></div>
+            <div class="purple"></div>
+            <div class="pink"></div>
+            <div class="white"><img src="assets/doodle/eraser2.png"></div>
+          </div>
+        </div>
+        <div class="side-content">
+          <div class="instructions"><p><strong>Instructions:</strong></br>Use left and right arrow keys to select a color. </br> </br> Left click to fill square with color. Hold to fill multiple squares in one stroke.</p></div>
+          <div class="message-board"><p><img src="assets/doodle/message-icon.png" class="message-icon"><strong>Messages:</strong></p><p>Ilay is lit!</p></div>
+          <div class="download"><img id="download-btn" src="assets/doodle/download.png" alt="Download your doodle"><p>Download</p></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../../paint.js"></script>
+</html>

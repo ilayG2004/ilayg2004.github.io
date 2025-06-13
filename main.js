@@ -50,6 +50,10 @@ const closeBtns = document.querySelectorAll('.Close');
 mainwindow.addEventListener('click', e => {
   if (e.target.matches('.Close')) {
     const win = e.target.closest('.Outer-window').parentElement;
+    if (win.classList.contains('paint-window')) {
+      const paintScript = document.querySelector("#paintScript");
+      paintScript.remove();
+    }
     if (win) win.remove();
   }
 });
@@ -96,6 +100,7 @@ const aiinfo = document.getElementById('open-aiinfo');
 const contacts = document.getElementById('open-contacts');
 const credits = document.getElementById('open-credits');
 const workexp = document.getElementById('open-workexp');
+const painter = document.getElementById('open-painter');
 const closeall = document.getElementById('close-all');
 const start = document.getElementById('start');
 
@@ -210,6 +215,31 @@ workexp.addEventListener('dblclick', () => {
         wrapper.classList.add('workexp-window');
         // append it to the container
         container.appendChild(wrapper);
+      })
+      .catch(err => console.error('Failed to load x.html:', err));
+  }
+});
+
+painter.addEventListener('dblclick', () => {
+  const paintExists = document.querySelector('.paint-window');
+  if (!paintExists) {
+    fetch('windows/apps/paint.html') 
+      .then(res => {
+        if (!res.ok) throw new Error('Network error:' + res.status);
+        return res.text();
+      })
+      .then(htmlString => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = htmlString;
+        wrapper.classList.add('paint-window');
+        const appScript = document.createElement('script');
+        appScript.src = 'paint.js';
+        appScript.id = 'paintScript';
+        appScript.type = 'module';
+        appScript.src  = `paint.js?cb=${Date.now()}`; //Cache busting; alternatively I could add an init function to my module, check if it exists, and run that. But tbh this is a toy-feature that I would not like to spend more time on. Got bigger fish to fry
+        
+        container.appendChild(wrapper);
+        container.appendChild(appScript);
       })
       .catch(err => console.error('Failed to load x.html:', err));
   }

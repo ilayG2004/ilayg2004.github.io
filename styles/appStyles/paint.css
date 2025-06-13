@@ -1,0 +1,159 @@
+.paint-window
+.Outer-window {
+  width: 568px;
+  height: 414px; 
+  position: absolute;
+  z-index: 9;
+  top: 85px;
+  left: 550px;
+  transform: scale(1.2);
+}
+
+
+.paint-window
+.Inner-window {
+  width: 552px;
+  height: 374px;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#canvas {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 288px;
+  height: 288px;
+  border: black solid 3px;
+  box-shadow:
+  4px 4px 8px rgba(0,0,0,0.5),
+  inset 0 2px 4px rgba(0,0,0,0.3);
+
+  user-select: none;          /* no text selection */
+  -webkit-user-drag: none;    /* no drag on WebKit browsers */
+  -ms-user-select: none;
+  -moz-user-select: none;
+}
+
+.color-picker {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.color-picker div {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 288px;
+  height: 12px;
+}
+
+.pixel {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border: dashed gray 1px;
+}
+
+.color-picker .black {
+  background-color: black;
+}
+
+.color-picker .red {
+  background-color: red;
+}
+
+.color-picker .yellow {
+  background-color: yellow;
+}
+.color-picker .blue {
+  background-color: blue;
+}
+.color-picker .green {
+  background-color: green;
+}
+.color-picker .orange {
+  background-color: orange;
+}
+.color-picker .purple {
+  background-color: purple;
+}
+.color-picker .pink {
+  background-color: pink;
+}
+.color-picker .white img {
+  width: 30px;
+  height: auto;
+}
+
+
+.current-color {
+  border-bottom: 5px solid black
+}
+
+.instructions {
+  width: 115px;
+  margin-top: 11px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #C3C7CB;
+  border: solid black 1px;
+  box-shadow:
+  4px 4px 8px rgba(0,0,0,0.5),
+  inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.side-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.message-board {
+  background-color: #C3C7CB;
+  margin-top: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow:
+  4px 4px 8px rgba(0,0,0,0.5),
+  inset 0 2px 4px rgba(0,0,0,0.3);
+  border: solid black 1px;
+
+  height: 150px;
+  width: 115px;
+
+}
+
+.message-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+
+.download img{
+  margin-top: 10px;
+  width: 40px;
+  height: auto;
+}
+.download p {
+  margin-top: 1px;
+  font-size: 9px;
+}
