@@ -58,6 +58,23 @@ mainwindow.addEventListener('click', e => {
   }
 });
 
+const closeall = document.getElementById('close-all');
+function closeAll() {
+  const children = document.getElementById('windows-frame').children;
+  console.log(children.length);
+  for (let i=0; i < children.length; i++) {
+    const child = children[i];
+    console.log(child);
+    if (!child.classList.contains('essentials')) {
+      child.remove();
+      i--;
+    }
+  }
+}
+closeall.addEventListener('click', () => {
+  closeAll();
+});
+
 /* SOUND EFFECTS */
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -92,19 +109,18 @@ mainwindow.addEventListener('dblclick', e => {
 
 
 /* Shortcut Openers*/
-const aboutme = document.getElementById('open-aboutme');
-const sweprojects = document.getElementById('open-sweprojects');
-const aiprojects = document.getElementById('open-aiprojects');
-const swetechstack = document.getElementById('open-swetechstack');
-const aiinfo = document.getElementById('open-aiinfo');
-const contacts = document.getElementById('open-contacts');
-const credits = document.getElementById('open-credits');
-const workexp = document.getElementById('open-workexp');
-const painter = document.getElementById('open-painter');
-const closeall = document.getElementById('close-all');
-const start = document.getElementById('start');
 
+const painter = document.getElementById('open-painter');
+const start = document.getElementById('start');
 const container = document.getElementById('windows-frame');
+
+
+start.addEventListener('click', () => {
+  closeAll();
+  openWindow({triggerId: 'open-aboutme', windowClass: 'aboutme-window', htmlPath: 'windows/aboutme.html'});
+  openWindow({triggerId: 'open-aiinfo', windowClass: 'aiinfo-window', htmlPath: 'windows/aiinfo.html'});
+  openWindow({triggerId: 'open-swetechstack', windowClass: 'swetech-window', htmlPath: 'windows/swetech.html'});
+});
 
 /*
   Steps:
@@ -113,112 +129,106 @@ const container = document.getElementById('windows-frame');
   3. Inject html content into container
   4. Set the class name of the container, so there is no css bleed
 */
-
-function closeAll() {
-  const children = document.getElementById('windows-frame').children;
-  console.log(children.length);
-  for (let i=0; i < children.length; i++) {
-    const child = children[i];
-    console.log(child);
-    if (!child.classList.contains('essentials')) {
-      child.remove();
-      i--;
+function addWindowOpener({triggerId, windowClass, htmlPath}) {
+  const trigger = document.getElementById(triggerId);
+  if (!trigger) {
+    console.warn(`Shortcut with ID "${triggerId}" not found.`);
+    return;
+  }
+  trigger.addEventListener('dblclick', () =>{
+    openWindow({triggerId, windowClass, htmlPath});
+  }); 
+}
+function openWindow({triggerId, windowClass, htmlPath}) {
+  //Ensure window is not already opened
+  if (!document.querySelector(`.${windowClass}`)) {
+    if (triggerId == 'open-aiprojects'){
+      const aiInfoExists = document.querySelector('.aiinfo-window');
+      if (aiInfoExists) {
+        aiInfoExists.remove();
+      }
     }
+    if (triggerId == 'open-sweprojects') {
+      const swetechExists = document.querySelector('.swetech-window');
+      if (swetechExists) {
+        swetechExists.remove();
+      }
+    }
+    fetch(htmlPath)
+    .then(res => {
+      if (!res.ok) throw new Error('Network error: ' + res.status);
+      return res.text();
+    })
+    .then(htmlString => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = htmlString;
+      wrapper.classList.add(windowClass);
+      container.appendChild(wrapper);
+
+      if (triggerId == 'open-swetechstack'){
+        addProjectLink(wrapper, true);
+      }
+      if (triggerId == 'open-aiinfo') {
+        addProjectLink(wrapper, false);
+      }
+    })
+    .catch(err => console.error(`Failed to load ${htmlPath}:`, err));
   }
 }
-closeall.addEventListener('click', () => {
-  closeAll();
-});
 
-start.addEventListener('click', () => {
-  closeAll();
-  displayAboutMe();
-  displayAIInfo();
-  displaySWETech();
-});
+function addProjectLink(wrapper, swe) {
+  const projLink = wrapper.querySelector('.projects-link a');
+  projLink.addEventListener('click', e => {
+    e.preventDefault();
+    if (swe) {
+      openWindow({triggerId: 'open-sweprojects', windowClass: 'sweprojects-window', htmlPath:'windows/sweprojects/bytes.html'});
+    } else {
+      openWindow({triggerId: 'open-aiprojects', windowClass: 'aiprojects-window', htmlPath: 'windows/aiprojects/astar.html'});
+    }
+  });
+  
+}
 
-aboutme.addEventListener('dblclick', () => {
-  displayAboutMe();
+addWindowOpener({
+  triggerId: 'open-credits',
+  windowClass: 'credits-window',
+  htmlPath: 'windows/thispage.html'
+})
+addWindowOpener({
+  triggerId: 'open-workexp',
+  windowClass: 'workexp-window',
+  htmlPath: 'windows/workexp/syngin.html'
 });
-
-contacts.addEventListener('dblclick', () => {
-  const contactsExists = document.querySelector('.contacts-window');
-  if (!contactsExists) {
-    fetch('windows/contacts.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('contacts-window');
-        // append it to the container
-        container.appendChild(wrapper);
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-});
-
-swetechstack.addEventListener('dblclick', () => {
-  displaySWETech();
-});
-
-aiinfo.addEventListener('dblclick', () => {
-  displayAIInfo();
-});
-
-sweprojects.addEventListener('dblclick', () => {
-  displaySWEProjects();
-});
-
-aiprojects.addEventListener('dblclick', () => {
-  displayAIProjects();
-});
-
-credits.addEventListener('dblclick', () => {
-  const creditsExists = document.querySelector('.credits-window');
-  if (!creditsExists) {
-    fetch('windows/thispage.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('credits-window');
-        // append it to the container
-        container.appendChild(wrapper);
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-});
-
-workexp.addEventListener('dblclick', () => {
-  const workexpExists = document.querySelector('.workexp-window');
-  if (!workexpExists) {
-    fetch('windows/workexp/syngin.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('workexp-window');
-        // append it to the container
-        container.appendChild(wrapper);
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-});
+addWindowOpener({
+  triggerId: 'open-swetechstack',
+  windowClass: 'swetech-window',
+  htmlPath: 'windows/swetech.html'
+})
+addWindowOpener({
+  triggerId: 'open-aiinfo',
+  windowClass: 'aiinfo-window',
+  htmlPath: 'windows/aiinfo.html'
+})
+addWindowOpener({
+  triggerId: 'open-sweprojects',
+  windowClass: 'sweprojects-window',
+  htmlPath: 'windows/sweprojects/bytes.html'
+})
+addWindowOpener({
+  triggerId: 'open-aiprojects',
+  windowClass: 'aiprojects-window',
+  htmlPath: 'windows/aiprojects/astar.html'
+})
+addWindowOpener({
+  triggerId: 'open-contacts',
+  windowClass: 'contacts-window',
+  htmlPath: 'windows/contacts.html'
+})
+addWindowOpener({
+  triggerId: 'open-aboutme',
+  windowClass: 'aboutme-window',
+  htmlPath: 'windows/aboutme.html'
+})
 
 painter.addEventListener('dblclick', () => {
   const paintExists = document.querySelector('.paint-window');
@@ -244,131 +254,6 @@ painter.addEventListener('dblclick', () => {
       .catch(err => console.error('Failed to load x.html:', err));
   }
 });
-
-/* DISPLAY START WINDOWS */
-function displayAboutMe() {
-  const aboutmeExists = document.querySelector('.aboutme-window');
-  if (!aboutmeExists) {
-    fetch('windows/aboutme.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('aboutme-window');
-        container.appendChild(wrapper);
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-}
-
-function displayAIInfo() {
-  const aiInfoExists = document.querySelector('.aiinfo-window');
-  if (!aiInfoExists) {
-    fetch('windows/aiinfo.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('aiinfo-window');
-        // append it to the container
-        container.appendChild(wrapper);
-
-        const projLink = wrapper.querySelector('.projects-link a');
-        projLink.addEventListener('click', e => {
-          e.preventDefault();
-          displayAIProjects();       // your function to tear down .aiinfo-window & load aiprojects
-        });
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-}
-
-function displaySWETech() {
-  const swetechExists = document.querySelector('.swetech-window');
-  if (!swetechExists) {
-    fetch('windows/swetech.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('swetech-window');
-        // append it to the container
-        container.appendChild(wrapper);
-
-        const projLink = wrapper.querySelector('.projects-link a');
-        projLink.addEventListener('click', e => {
-          e.preventDefault();
-          displaySWEProjects();       // your function to tear down .aiinfo-window & load aiprojects
-        });
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  } 
-}
-
-
-/* DISPLAY PROJECTS */
-function displayAIProjects() {
-  const aiProjectsExists = document.querySelector('.aiprojects-window');
-  if (!aiProjectsExists) {
-    const aiInfoExists = document.querySelector('.aiinfo-window');
-    if (aiInfoExists) {
-      aiInfoExists.remove();
-    }
-    fetch('windows/aiprojects/astar.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('aiprojects-window');
-        // append it to the container
-        container.appendChild(wrapper);
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-}
-
-function displaySWEProjects() {
-  const sweProjectsExists = document.querySelector('.sweprojects-window');
-  if (!sweProjectsExists) {
-    const swetechExists = document.querySelector('.swetech-window');
-    if (swetechExists) {
-      swetechExists.remove();
-    }
-    fetch('windows/sweprojects/bytes.html') 
-      .then(res => {
-        if (!res.ok) throw new Error('Network error:' + res.status);
-        return res.text();
-      })
-      .then(htmlString => {
-        // create a wrapper div (or whatever tag you want)
-        const wrapper = document.createElement('div');
-        // inject the fetched HTML
-        wrapper.innerHTML = htmlString;
-        wrapper.classList.add('sweprojects-window');
-        // append it to the container
-        container.appendChild(wrapper);
-      })
-      .catch(err => console.error('Failed to load x.html:', err));
-  }
-}
 
 /* SCROLL BUTTON FUNCTIONALITY */
 document.getElementById('windows-frame').addEventListener('click', async e => {
