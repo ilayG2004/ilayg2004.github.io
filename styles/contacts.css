@@ -9,8 +9,8 @@
   height: 85px;
 
   position: absolute;
-  z-index: 10;             /* higher than your background, lower/higher as needed */
-  top: 400px;               /* tweak these to place it where you like */
+  z-index: 10;             
+  top: 400px;               
   left: 200px;
   transform: scale(1.2);
 }

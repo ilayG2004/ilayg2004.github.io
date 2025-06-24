@@ -20,16 +20,21 @@ a {
   width: 252px;
   height: 200px;
   background-color: #C3C7CB;
-  border: 2px solid black;
-  box-shadow:
-  /* first value = drop shadow */
-  4px 4px 8px rgba(0,0,0,0.5),
-  /* second value = inner shadow (inset) */
-  inset 0 2px 4px rgba(0,0,0,0.3);
+  /* Illusion of window depth */
+  border-style: solid;
+  border-width: 3px;
+  border-top-color: #000000;
+  border-left-color: #000000;
+  border-bottom-color: #404040;
+  border-right-color: #404040;
+  box-shadow: 
+  0px 8px 12px rgba(0, 0, 0, 0.5), /* outer shadow */
+  inset -1px -1px 0 #808080,   /* inner top-left bevel */
+  inset 1px 1px 0 #dfdfdf;     /* inner bottom-right bevel */
 
   position: absolute;
-  z-index: 10;             /* higher than your background, lower/higher as needed */
-  top: 300px;               /* tweak these to place it where you like */
+  z-index: 10;             
+  top: 300px;              
   left: 497px;
   transform: scale(1.34);
 }
